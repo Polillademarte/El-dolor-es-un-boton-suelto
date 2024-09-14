@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El dolor es un boton suelto</title>
+    <style>
+        body {
+            background-image: url('culpa.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Courier', 'Lucida Console', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #contenedor {
+            background-color: rgba(211, 211, 211, 0.8); /* Fondo gris con opacidad */
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 60%;
+        }
+        #titulo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: red;
+            cursor: pointer;
+        }
+        #cita {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #instrucciones {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor">
+        <div id="titulo">El dolor es un botón suelto</div>
+
+        <p id="instrucciones">Instrucciones: Haz clic en las palabras en rojo.</p>
+
+        <p id="texto-base">
+            Cuando la verdad se descose, las palabras caen como botones sueltos. Su <span class="highlight" data-palabra="ruido">ruido</span> es casi inaudible, pero aún perceptible. La prenda queda en desuso; no importa la posición del botón que se haya desprendido, cualquiera puede percibir que algo no se encuentra en su lugar, desde cualquier ángulo que mire. Todo esto, como testimonio del <span class="highlight" data-palabra="dolor">dolor</span>.
+            <br><br>
+            Enunciar una <span class="highlight" data-palabra="violación">violación</span>. Ni siquiera sabía lo que aquello significaba, pero después de decirlo, todo se descosió de una vez. Los hilos quedaron fuera, la prenda quedó chueca. Cuando dices algo tan desagradable, algo tan horripilante, sientes que tu piel es de lija; no se debería sentir así, pero es como si lo contaminado del interior se extendiera al exterior. Los abrazos duelen, las palabras se entierran en la piel. A pesar de ser la persona más vulnerable en la habitación, de repente estás a cargo de tranquilizar a todos: empiezas a negar tus sentimientos, a negar la verdad “No, no pasó así. No, no fue tan malo. No, no, no”, aun cuando por dentro estás hirviendo en tu propia culpa, en tu propio <span class="highlight" data-palabra="dolor">dolor</span>. Quieres estar sola, quieres cerrarte de nuevo. Pero es muy tarde; recibes disculpas que no crees merecer. Culpa, culpa. Suciedad. Y cuando vuelves a coser el botón, raramente se nota la diferencia, aunque tú sabes que está ahí.
+            <br><br>
+            Me he preguntado si sentiré las cosas de esa manera de ahora en adelante, cuando vaya a la cena de navidad, cuando visite a mis padres en el invierno. Me pregunto si estará ahí, el <span class="highlight" data-palabra="dolor">dolor</span> guardado en la esquina, esperando a volver. El único alivio por ahora es la escritura, una forma de desahogo ante las cosas que no puedo controlar. Purgar los sentimientos en las palabras hasta que el <span class="highlight" data-palabra="dolor">dolor</span> desaparezca, hasta que la culpa se diluya en la verdad. Hasta comenzar de nuevo.
+        </p>
+
+        <div id="cita"></div>
+    </div>
+
+    <script>
+        const citas = {
+            "dolor": [
+                "El dolor su boca reprimió, Y palabras bastante indignadas a la lengua que las buscaba Faltaron, y no a llorar tiempo entrega, Sino que lo piadoso y lo impío A fundir se lanza y del castigo en la imagen toda está. - Filomela y Procne (Ovidio)",
+                "Arrastrando la herida que nunca sanará, La cicatriz eterna que ya no admite cura, que a su víctima deja vencida en el dolor. Ella soporta el peso, que él dejó a sus espaldas y la carga por siempre de un alma pecadora. - Lucrecia (William Shakespeare)",
+                "La muralla caída, la torre, el techo en llamas y la muerte de Agamenón. Tan sometida, tan domeñada por la sangre bestial del aire. - Leda y el Cisne (William Butler Yeats)"
+            ],
+            "ruido": [
+                "El dolor su boca reprimió, Y palabras bastante indignadas a la lengua que las buscaba Faltaron, y no a llorar tiempo entrega, Sino que lo piadoso y lo impío A fundir se lanza y del castigo en la imagen toda está. - Filomela y Procne (Ovidio)",
+                "Arrastrando la herida que nunca sanará, La cicatriz eterna que ya no admite cura, que a su víctima deja vencida en el dolor. Ella soporta el peso, que él dejó a sus espaldas y la carga por siempre de un alma pecadora. - Lucrecia (William Shakespeare)",
+                "La muralla caída, la torre, el techo en llamas y la muerte de Agamenón. Tan sometida, tan domeñada por la sangre bestial del aire. - Leda y el Cisne (William Butler Yeats)"
+            ],
+            "violación": [
+                "El dolor su boca reprimió, Y palabras bastante indignadas a la lengua que las buscaba Faltaron, y no a llorar tiempo entrega, Sino que lo piadoso y lo impío A fundir se lanza y del castigo en la imagen toda está. - Filomela y Procne (Ovidio)",
+                "Arrastrando la herida que nunca sanará, La cicatriz eterna que ya no admite cura, que a su víctima deja vencida en el dolor. Ella soporta el peso, que él dejó a sus espaldas y la carga por siempre de un alma pecadora. - Lucrecia (William Shakespeare)",
+                "La muralla caída, la torre, el techo en llamas y la muerte de Agamenón. Tan sometida, tan domeñada por la sangre bestial del aire. - Leda y el Cisne (William Butler Yeats)"
+            ]
+        };
+
+        document.querySelectorAll('.highlight').forEach(element => {
+            element.addEventListener('click', () => {
+                const palabra = element.getAttribute('data-palabra');
+                const randomCita = citas[palabra][Math.floor(Math.random() * citas[palabra].length)];
+                document.getElementById('cita').innerHTML = `<p><strong>${randomCita}</strong></p>`;
+            });
+        });
+    </script>
+</body>
+</html>
